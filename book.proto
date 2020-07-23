@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+package brightu;
+
+service BookService {
+  rpc GetBook(BookReq) returns (BookResp) {}
+}
+
+message BookReq {
+  string isbn = 1;
+}
+
+message BookResp {
+  string isbn = 1;
+  string title = 2;
+  string image = 3;
+  string info = 4;
+}
