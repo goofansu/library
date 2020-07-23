@@ -1,12 +1,8 @@
-<h1>Listing Books</h1>
-
 <table>
   <thead>
     <tr>
-      <th>Isbn</th>
+      <th>ISBN</th>
       <th>Title</th>
-      <th>Image</th>
-      <th>Info</th>
 
       <th></th>
     </tr>
@@ -16,8 +12,6 @@
     <tr>
       <td><%= book.isbn %></td>
       <td><%= book.title %></td>
-      <td><%= book.image %></td>
-      <td><%= book.info %></td>
 
       <td>
         <span><%= link "Show", to: Routes.book_path(@conn, :show, book) %></span>

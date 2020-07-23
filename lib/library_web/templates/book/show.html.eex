@@ -1,28 +1,13 @@
-<h1>Show Book</h1>
+<h1>
+  <%= @book.title %>
+</h1>
 
-<ul>
-
-  <li>
-    <strong>Isbn:</strong>
-    <%= @book.isbn %>
-  </li>
-
-  <li>
-    <strong>Title:</strong>
-    <%= @book.title %>
-  </li>
-
-  <li>
-    <strong>Image:</strong>
-    <%= @book.image %>
-  </li>
-
-  <li>
-    <strong>Info:</strong>
-    <%= @book.info %>
-  </li>
-
-</ul>
+<div id="content">
+  <%= img_tag @book.image %>
+  <blockquote>
+    <%= raw @book.info %>
+  </quote>
+</div>
 
 <span><%= link "Edit", to: Routes.book_path(@conn, :edit, @book) %></span>
 <span><%= link "Back", to: Routes.book_path(@conn, :index) %></span>

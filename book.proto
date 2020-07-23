@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package brightu;
+package library;
 
 service BookService {
   rpc GetBook(BookReq) returns (BookResp) {}

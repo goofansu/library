@@ -101,4 +101,16 @@ defmodule Library.Inventory do
   def change_book(%Book{} = book, attrs \\ %{}) do
     Book.changeset(book, attrs)
   end
+
+  def upsert_book(attrs \\ %{}) do
+    case %Book{}
+         |> Book.changeset(attrs)
+         |> Repo.insert(on_conflict: :replace_all, conflict_target: :isbn) do
+      {:ok, book} ->
+        {:ok, book}
+
+      error ->
+        error
+    end
+  end
 end

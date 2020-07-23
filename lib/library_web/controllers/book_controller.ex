@@ -15,8 +15,10 @@ defmodule LibraryWeb.BookController do
   end
 
   def create(conn, %{"book" => book_params}) do
-    case Inventory.create_book(book_params) do
+    case Inventory.upsert_book(book_params) do
       {:ok, book} ->
+        update_book_information(book)
+
         conn
         |> put_flash(:info, "Book created successfully.")
         |> redirect(to: Routes.book_path(conn, :show, book))
@@ -42,6 +44,8 @@ defmodule LibraryWeb.BookController do
 
     case Inventory.update_book(book, book_params) do
       {:ok, book} ->
+        update_book_information(book)
+
         conn
         |> put_flash(:info, "Book updated successfully.")
         |> redirect(to: Routes.book_path(conn, :show, book))
@@ -58,5 +62,17 @@ defmodule LibraryWeb.BookController do
     conn
     |> put_flash(:info, "Book deleted successfully.")
     |> redirect(to: Routes.book_path(conn, :index))
+  end
+
+  defp update_book_information(%Book{isbn: isbn} = book) do
+    {:ok, channel} = GRPC.Stub.connect("127.0.0.1:50051")
+    request = Library.BookReq.new(isbn: isbn)
+    {:ok, reply} = channel |> Library.BookService.Stub.get_book(request)
+
+    Inventory.update_book(book, %{
+      title: reply.title,
+      image: reply.image,
+      info: reply.info
+    })
   end
 end
