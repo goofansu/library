@@ -18,7 +18,7 @@ defmodule Library.Inventory do
 
   """
   def list_books do
-    Repo.all(Book)
+    Repo.all(from Book, order_by: [desc: :inserted_at])
   end
 
   @doc """
