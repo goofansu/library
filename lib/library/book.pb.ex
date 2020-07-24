@@ -15,17 +15,15 @@ defmodule Library.BookResp do
   use Protobuf, syntax: :proto3
 
   @type t :: %__MODULE__{
-          isbn: String.t(),
           title: String.t(),
           image: String.t(),
           info: String.t()
         }
-  defstruct [:isbn, :title, :image, :info]
+  defstruct [:title, :image, :info]
 
-  field :isbn, 1, type: :string
-  field :title, 2, type: :string
-  field :image, 3, type: :string
-  field :info, 4, type: :string
+  field :title, 1, type: :string
+  field :image, 2, type: :string
+  field :info, 3, type: :string
 end
 
 defmodule Library.BookService.Service do
