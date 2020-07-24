@@ -2,11 +2,12 @@
   <%= @book.title %>
 </h1>
 
-<div id="content">
+<div>
   <%= img_tag @book.image %>
+
   <blockquote>
     <%= raw @book.info %>
-  </quote>
+  </blockquote>
 </div>
 
 <span><%= link "Edit", to: Routes.book_path(@conn, :edit, @book) %></span>
