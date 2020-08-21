@@ -3,7 +3,7 @@
 </h1>
 
 <div>
-  <%= img_tag @book.image %>
+  <%= img_tag Library.ImageUploader.url({@book.image, @book}) %>
 
   <blockquote>
     <%= raw @book.info %>

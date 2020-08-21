@@ -13,10 +13,6 @@
   <%= text_input f, :title %>
   <%= error_tag f, :title %>
 
-  <%= label f, :image %>
-  <%= text_input f, :image %>
-  <%= error_tag f, :image %>
-
   <%= label f, :info %>
   <%= textarea f, :info %>
   <%= error_tag f, :info %>

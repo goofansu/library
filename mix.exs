@@ -48,7 +48,9 @@ defmodule Library.MixProject do
       {:cowboy, "~> 2.8.0", override: true},
       {:cowlib, "~> 2.9.0", override: true},
       {:grpc, github: "elixir-grpc/grpc"},
-      {:protobuf, "~> 0.7.1"}
+      {:protobuf, "~> 0.7.1"},
+      {:waffle, "~> 1.1.1"},
+      {:waffle_ecto, "~> 0.0.9"}
     ]
   end
 
